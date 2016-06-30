@@ -25,7 +25,7 @@ public class GitFetchExecuter {
 			
 			org.eclipse.jgit.api.FetchCommand fetchCommand = git.fetch();
 			
-			fetchCommand.setDryRun(true);
+			fetchCommand.setDryRun(false);//Otherwise it will Update... in local..
 			FetchResult fetchRes = fetchCommand.call();
 			System.out.println(fetchRes.getMessages());
 			Collection<TrackingRefUpdate> collection = fetchRes.getTrackingRefUpdates();
