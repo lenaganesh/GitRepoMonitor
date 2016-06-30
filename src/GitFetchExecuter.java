@@ -24,6 +24,7 @@ public class GitFetchExecuter {
 			git = Git.open(gitWorkDir);
 			org.eclipse.jgit.api.FetchCommand fetchCommand = git.fetch();
 			
+			
 			FetchResult fetchRes = fetchCommand.call();
 			System.out.println(fetchRes.getMessages());
 			Collection<TrackingRefUpdate> collection = fetchRes.getTrackingRefUpdates();
