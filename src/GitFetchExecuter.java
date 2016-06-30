@@ -29,6 +29,7 @@ public class GitFetchExecuter {
 			Collection<TrackingRefUpdate> collection = fetchRes.getTrackingRefUpdates();
 			for (TrackingRefUpdate trackingRefUpdate : collection) {
 				System.out.println("Tracking Update:"+trackingRefUpdate);
+				System.out.println(trackingRefUpdate.getRemoteName());
 			}
 
 			System.out.println("After Read:");
