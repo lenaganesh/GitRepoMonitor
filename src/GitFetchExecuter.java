@@ -1,67 +1,40 @@
 import java.awt.BorderLayout;
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.util.Collection;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import org.eclipse.jgit.api.Git;
+import org.eclipse.jgit.transport.FetchResult;
+import org.eclipse.jgit.transport.TrackingRefUpdate;
+
 public class GitFetchExecuter {
 
 	public void executeCommand(String gitPath) {
 		try {
+			
 			System.out.println(HideToSystemTray.gitHome);
+			File gitWorkDir = new File("C:/PROJECT/TEMP/GitRepoMonitor");
+			Git git = null;
 			
-			//String[] commands={"cmd "," cd " + "C:/PROJECT/TEMP/","dir"};
-			//for (String string : commands) {
-				
+			git = Git.open(gitWorkDir);
+			org.eclipse.jgit.api.FetchCommand fetchCommand = git.fetch();
 			
-			Process p = Runtime.getRuntime().exec("cmd /c dir",null,new File("C:/PROJECT/TEMP/"));//new String[] {"cmd ","/K", " cd " + "C:/PROJECT/TEMP/", "cmd  dir" });
-			InputStream is = p.getInputStream();
-			BufferedReader br = new BufferedReader(new InputStreamReader(is));
-			File file = new File("");
-			String curDir = file.getAbsolutePath().toString();
-			System.out.println("FFF:"+curDir);
-			String input;
-			StringBuffer buffer = new StringBuffer();
-			int n;
-			while ((n = br.read()) != -1) {
-
-				char input1 = (char) n;
-				//System.out.println(n + "\t" + input1);
-				//System.out.println(input1);
-				buffer.append(input1);
-				//System.out.println(buffer);
-				if (buffer.toString().toLowerCase().contains(curDir.toLowerCase())) {
-					break;
-				}
-				if (buffer.toString().toLowerCase().contains("password")) {
-					System.out.println(HideToSystemTray.password.getPassword() + "XXX");
-					if (HideToSystemTray.password.getPassword() == null
-							|| HideToSystemTray.password.getPassword().length == 0) {
-						JPanel panel = new JPanel(new BorderLayout());
-						JLabel lab = new JLabel("Password to GIT Repository:");
-						panel.add(lab, BorderLayout.NORTH);
-
-						panel.add(HideToSystemTray.password, BorderLayout.SOUTH);
-						JOptionPane.showMessageDialog(null, panel);
-					}
-					byte[] passwd = (new String(HideToSystemTray.password.getPassword() + "\r\n")).getBytes();
-					p.getOutputStream().write(passwd);
-					p.getOutputStream().flush();
-					p.getOutputStream().close();
-				}
+			FetchResult fetchRes = fetchCommand.call();
+			System.out.println(fetchRes.getMessages());
+			Collection<TrackingRefUpdate> collection = fetchRes.getTrackingRefUpdates();
+			for (TrackingRefUpdate trackingRefUpdate : collection) {
+				System.out.println("Tracking Update:"+trackingRefUpdate);
 			}
-			// String text = new String(buff, 0, n);
-			// System.out.println(text);
 
 			System.out.println("After Read:");
-			System.out.println("OP:"+buffer);
-			//}
-		} catch (IOException e) {
+
+			// }
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
