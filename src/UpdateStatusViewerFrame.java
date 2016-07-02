@@ -1,6 +1,7 @@
 import java.awt.BorderLayout;
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JInternalFrame;
@@ -8,11 +9,11 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 import javax.swing.UIManager;
 
 public class UpdateStatusViewerFrame extends JInternalFrame {
 	DefaultListModel model = new DefaultListModel();
+
 	UpdateStatusViewerFrame() {
 		super("Update Status Viewer", true, // resizable
 				true, // closable
@@ -36,10 +37,10 @@ public class UpdateStatusViewerFrame extends JInternalFrame {
 		BorderLayout borderLayout = new BorderLayout();
 		panel.setLayout(borderLayout);
 		panel.add(new JLabel("Update Status Logs"), BorderLayout.NORTH);
-		//JTextArea textArea = new JTextArea();
-		//textArea.setEditable(false);
-		//JScrollPane scrollPane = new JScrollPane(textArea);
-		
+		// JTextArea textArea = new JTextArea();
+		// textArea.setEditable(false);
+		// JScrollPane scrollPane = new JScrollPane(textArea);
+
 		JList list = new JList(model);
 		JScrollPane pane = new JScrollPane(list);
 		panel.add(pane, BorderLayout.CENTER);
@@ -48,28 +49,35 @@ public class UpdateStatusViewerFrame extends JInternalFrame {
 
 			@Override
 			public void run() {
-				
+				ArrayList<String> listData = new ArrayList<String>();
+				;
 				while (true) {
-					model.removeAllElements();
-					StringBuffer buffer=new StringBuffer();
+
+					listData = new ArrayList<String>();
+					;
+
+					StringBuffer buffer = new StringBuffer();
 					try (BufferedReader br = new BufferedReader(new FileReader("PollLog.txt"))) {
 						for (String line; (line = br.readLine()) != null;) {
 							// process the line.
-							if(line.startsWith("Changes Found:")){
+							if (line.startsWith("Changes Found:")) {
 								buffer.append(line + "\n");
-								
-								model.addElement(line);
+								listData.add(line);
+
 							}
-							
-						
+
 						}
 						// line is not visible here.
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-					
-					//textArea.setText(buffer.toString() );
+					model.removeAllElements();
+					for (String string : listData) {
+						model.addElement(string);
+					}
+
+					// textArea.setText(buffer.toString() );
 					try {
 						Thread.sleep(30000);
 					} catch (InterruptedException e) {
