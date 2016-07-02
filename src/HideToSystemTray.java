@@ -120,6 +120,8 @@ public class HideToSystemTray extends JFrame {
 		desktop.add(settingsFrame);
 		PollLogViewerFrame PollLogViewerFrame=new PollLogViewerFrame();
 		desktop.add(PollLogViewerFrame);
+		UpdateStatusViewerFrame UpdateStatusViewerFrame=new UpdateStatusViewerFrame();
+		desktop.add(UpdateStatusViewerFrame);
 		try {
 			//settingsFrame.setSelected(true);
 		} catch (Exception e) {

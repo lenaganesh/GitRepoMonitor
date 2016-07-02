@@ -31,7 +31,7 @@ public class GitFetchExecuter {
 			System.out.println(fetchRes.getMessages());
 			Collection<TrackingRefUpdate> collection = fetchRes.getTrackingRefUpdates();
 			if(collection != null && collection.size() > 0){
-				fw.write("Changes Found.\n");	
+				fw.write("Changes Found:"+ new Date()+".\n");	
 			}else
 			{
 				fw.write("Changes NOT Found.\n");	
