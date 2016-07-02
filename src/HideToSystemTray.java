@@ -55,11 +55,11 @@ public class HideToSystemTray extends JFrame {
 					setExtendedState(JFrame.NORMAL);
 				}
 			});
-			MenuItem startMonitorItem = new MenuItem("Start Monitor");
-			MenuItem stopMonitorItem = new MenuItem("Stop Monitor");
+			//MenuItem startMonitorItem = new MenuItem("Start Monitor");
+			//MenuItem stopMonitorItem = new MenuItem("Stop Monitor");
 			popup.add(defaultItem);
-			popup.add(startMonitorItem);
-			popup.add(stopMonitorItem);
+			//popup.add(startMonitorItem);
+			//popup.add(stopMonitorItem);
 			trayIcon = new TrayIcon(image, "SystemTray Demo", popup);
 			trayIcon.setImageAutoSize(true);
 			Thread t = new Thread(new MessageNotifier(trayIcon));
@@ -99,7 +99,7 @@ public class HideToSystemTray extends JFrame {
 				}
 			}
 		});
-		setIconImage(Toolkit.getDefaultToolkit().getImage("Duke256.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage("12.png"));
 
 		setVisible(true);
 		setSize(300, 200);

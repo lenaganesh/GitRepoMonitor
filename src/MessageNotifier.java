@@ -11,7 +11,7 @@ public class MessageNotifier implements Runnable {
 	public void run() {
 		while (true) {
 			try {
-				GitFetchExecuter executer=new GitFetchExecuter();
+				GitFetchExecuter executer=new GitFetchExecuter(this.trayIcon);
 				executer.executeCommand("");
 				Thread.sleep(30000);
 				
@@ -19,7 +19,7 @@ public class MessageNotifier implements Runnable {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			trayIcon.displayMessage("GIT Repository Changed", "Repository Changed. Update your workspace", TrayIcon.MessageType.INFO);
+			//trayIcon.displayMessage("GIT Repository Changed", "Repository Changed. Update your workspace", TrayIcon.MessageType.INFO);
 		}
 
 	}
