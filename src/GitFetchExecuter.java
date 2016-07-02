@@ -40,6 +40,9 @@ public class GitFetchExecuter {
 				System.out.println("Tracking Update:"+trackingRefUpdate);
 				System.out.println(trackingRefUpdate.getRemoteName());
 				fw.write("Changes Found :"+trackingRefUpdate+"\n");	
+				System.out.println(trackingRefUpdate.getNewObjectId().getName());
+				System.out.println(trackingRefUpdate.getResult());
+				System.out.println(trackingRefUpdate.getResult().getDeclaringClass());
 			}
 
 			System.out.println("Read Completed");
