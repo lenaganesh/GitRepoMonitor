@@ -50,12 +50,14 @@ public class UpdateStatusViewerFrame extends JInternalFrame {
 			public void run() {
 				
 				while (true) {
+					model.removeAllElements();
 					StringBuffer buffer=new StringBuffer();
 					try (BufferedReader br = new BufferedReader(new FileReader("PollLog.txt"))) {
 						for (String line; (line = br.readLine()) != null;) {
 							// process the line.
 							if(line.startsWith("Changes Found:")){
 								buffer.append(line + "\n");
+								
 								model.addElement(line);
 							}
 							
