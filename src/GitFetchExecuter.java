@@ -31,6 +31,7 @@ public class GitFetchExecuter {
 			git = Git.open(gitWorkDir);
 
 			org.eclipse.jgit.api.FetchCommand fetchCommand = git.fetch();
+			
 			// If TRUE==Next fetch time it will not notify for changess
 			fetchCommand.setDryRun(false);// Otherwise it will Update... in
 											// local..
