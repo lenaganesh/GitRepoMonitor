@@ -74,7 +74,8 @@ public class UpdateStatusViewerFrame extends JInternalFrame {
 					}
 					model.removeAllElements();
 					for (String string : listData) {
-						model.addElement(string);
+						model.insertElementAt( string,0);
+						//model.addElement(string);
 					}
 
 					// textArea.setText(buffer.toString() );
