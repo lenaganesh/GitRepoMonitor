@@ -78,6 +78,7 @@ public class UpdateStatusViewerFrame extends JInternalFrame {
 						//model.addElement(string);
 					}
 
+					
 					// textArea.setText(buffer.toString() );
 					try {
 						Thread.sleep(30000);
